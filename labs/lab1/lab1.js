@@ -1,9 +1,14 @@
 "use strict";
+
+const { v4: uuidv4 } = require("uuid");
+
+
 /**
  * Reflection question 1
- * your answer goes here
- * object properties that are not explicitly assigned a value are undefined by default, which means that it is not necessary to store properties with a value of false in JavaScript objects
- * just the true ones.
+ * Why don’t we need to store properties with the value false in the JavaScript objects?
+ *
+ * Object properties that are not explicitly assigned a value are undefined by default,
+ * and thereby it is just neccesary to store the true ones.
  */
 
 const imported = require("./inventory.js");
@@ -22,10 +27,13 @@ for (const name in imported.inventory) {
 }
 /**
  * Reflection question 2
+ * When will the two examples (object.keys, for...in) give different outputs?
+ *
+ * The output will then vary if the object has inherited properties.
  * The Object.keys() method returns an array of a given object's own enumerable properties,
  * while the for...in loop iterates over an object's enumerable properties and its inherited ones.
- * The output will then vary if the object has inherited properties.
  *
+ * Why is inherited functions, such as sort(), not printed?
  * inherited function like sort will not be listed cuz functions are not enumerable in javascript.
  */
 
@@ -48,7 +56,14 @@ console.log(makeOptions(imported.inventory, "foundation"));
 
 console.log("\n--- Assignment 2 ---------------------------------------");
 class Salad {
+
+  static instanceCounter = 0;
+
   constructor(arg){
+    const uuid = uuidv4();
+    this.uuid = "salad_" + uuid;
+    this.id = "salad_" + Salad.instanceCounter++;
+
     if (arg === undefined){
       this.ingredients = {}
     } else if (typeof arg === "string"){ //check if string
@@ -79,29 +94,28 @@ class Salad {
   }
 }
 
-// // class GourmetSalad extends Salad{
+class GourmetSalad extends Salad {
 
-// // constructor(){
-// //   super();
-// //   this.ingredients = {}
-// // }
+  constructor(){
+    super();
+    this.ingredients = {}
+  }
 
-// // add(name, properties, size){
+  add(name, properties, size){
 
-// //   if(this.ingredients[name] !== undefined){ //if ingredient already exists
-// //     this.ingredients[name].size += size //increase size
-// //   } else{
-// //     super.add(name, properties)
-// //     this.ingredients[name][size] = size
-// //   }
-// //   return this;
-// // }
+    if(this.ingredients[name] !== undefined){ //if ingredient already exists
+      this.ingredients[name].size += size //increase size
+    } else{
+      super.add(name, Object.assign({size:size}, properties))
+    }
+    return this;
+  }
 
-// // getPrice(){
-// //   return Object.values(this.ingredients)
-// //         .reduce((p,c) => p + (c.size*c.price), 0);
-// // }
-// // }
+  getPrice(){
+    return Object.values(this.ingredients)
+          .reduce(((p,c) => p + ((c.size !== undefined) ? c.size : 1) *c.price), 0);
+  }
+  }
 
 
 let myCaesarSalad = new Salad()
@@ -125,15 +139,11 @@ console.log('En ceasarsallad har ' + myCaesarSalad.count('lactose') + ' ingredie
 console.log('En ceasarsallad har ' + myCaesarSalad.count('extra') + ' tillbehör');
 // En ceasarsallad har 3 tillbehör
 
-// test
-// // let x = {...myCaesarSalad.ingredients}
-// // console.log(x);
-// // console.log("after")
-// // x.Sallad.new = 99
-// // console.log(x);
-// // console.log("hej");
-// // // console.log(Salad.Sallad.new = 1)
-
+/**
+* Reflection question 3
+* How are classes and inherited properties represented in JavaScript?
+* 
+*/
 console.log('\n--- reflection question 3 ---------------------------------------')
 console.log('typeof Salad: ' + typeof Salad);
 console.log('typeof Salad.prototype: ' + typeof Salad.prototype);
@@ -144,43 +154,89 @@ console.log('check 1: ' + (Salad.prototype === Object.getPrototypeOf(myCaesarSal
 console.log('check 2: ' + (Object.prototype === Object.getPrototypeOf(Salad.prototype)));
 
 
-// console.log("\n--- Assignment 4 ---------------------------------------");
+console.log("\n--- Assignment 4 ---------------------------------------");
 
-// const objectCopy = new Salad(myCaesarSalad);
-// const json = JSON.stringify(myCaesarSalad);
-// const jsonCopy = new Salad(json);
-// console.log('myCesarSalad\n' + JSON.stringify(myCaesarSalad));
-// console.log('copy from object\n' + JSON.stringify(objectCopy));
-// console.log('copy from json\n' + JSON.stringify(jsonCopy));
-// objectCopy.add('Gurka', imported.inventory['Gurka']);
-// console.log('originalet kostar kostar ' + myCaesarSalad.getPrice() + ' kr');
-// console.log('med gurka kostar den ' + objectCopy.getPrice() + ' kr');
+const objectCopy = new Salad(myCaesarSalad);
+const json = JSON.stringify(myCaesarSalad);
+const jsonCopy = new Salad(json);
+console.log('myCesarSalad\n' + JSON.stringify(myCaesarSalad));
+console.log('copy from object\n' + JSON.stringify(objectCopy));
+console.log('copy from json\n' + JSON.stringify(jsonCopy));
+objectCopy.add('Gurka', imported.inventory['Gurka']);
+console.log('originalet kostar kostar ' + myCaesarSalad.getPrice() + ' kr');
+console.log('med gurka kostar den ' + objectCopy.getPrice() + ' kr');
 
-// // console.log("\n--- Assignment 5 ---------------------------------------");
-// //Not done
-// // let myGourmetSalad = new GourmetSalad()
-// //   .add('Sallad', imported.inventory['Sallad'], 0.5)
-// //   .add('Kycklingfilé', imported.inventory['Kycklingfilé'], 2)
-// //   .add('Bacon', imported.inventory['Bacon'], 0.5)
-// //   .add('Krutonger', imported.inventory['Krutonger'])
-// //   .add('Parmesan', imported.inventory['Parmesan'], 2)
-// //   .add('Ceasardressing', imported.inventory['Ceasardressing']);
-// // console.log('Min gourmetsallad med lite bacon kostar ' + myGourmetSalad.getPrice() + ' kr');
-// // myGourmetSalad.add('Bacon', imported.inventory['Bacon'], 1)
-// // console.log('Med extra bacon kostar den ' + myGourmetSalad.getPrice() + ' kr');
+console.log("\n--- Assignment 5 ---------------------------------------");
+// Not done
+let myGourmetSalad = new GourmetSalad()
+  .add('Sallad', imported.inventory['Sallad'], 0.5)
+  .add('Kycklingfilé', imported.inventory['Kycklingfilé'], 2)
+  .add('Bacon', imported.inventory['Bacon'], 0.5)
+  .add('Krutonger', imported.inventory['Krutonger'])
+  .add('Parmesan', imported.inventory['Parmesan'], 2)
+  .add('Ceasardressing', imported.inventory['Ceasardressing']);
+console.log('Min gourmetsallad med lite bacon kostar ' + myGourmetSalad.getPrice() + ' kr');
+myGourmetSalad.add('Bacon', imported.inventory['Bacon'], 1)
+console.log('Med extra bacon kostar den ' + myGourmetSalad.getPrice() + ' kr');
+console.log("------------------");
+console.log(myGourmetSalad)
 
-// // console.log("\n--- Assignment 6 ---------------------------------------");
-// /*
-// console.log('Min gourmetsallad har id: ' + myGourmetSalad.id);
-// console.log('Min gourmetsallad har uuid: ' + myGourmetSalad.uuid);
-// */
+console.log("\n--- Assignment 6 ---------------------------------------");
 
-// /**
-//  * Reflection question 4
-//  */
-// /**
-//  * Reflection question 5
-//  */
-// /**
-//  * Reflection question 6
-//  */
+console.log('Min gourmetsallad har id: ' + myGourmetSalad.id);
+console.log('Min gourmetsallad har uuid: ' + myGourmetSalad.uuid);
+
+/**
+* Reflection question 4
+* In which object are static properties stored?
+*
+* Static properties are stored on the class itself rather than on individual instances of the class.
+* This means that all instances of a class share the same static properties.
+
+/** Reflection question 5
+* Can you make the id property read only?
+* Yes, by using the Object.defineProperty()
+* ex:
+* Object.defineProperty(this, 'id', {
+*   value: Salad.instanceCounter++,
+*   writable: false
+* });
+
+/** Reflection question 6
+* Can properties be private?
+* Yes, by prefixing the property name with #
+* ex:   #private = 'private';
+*/
+
+// Extra assignment:
+
+class HandleOrder{
+
+  constructor(){
+  this.cart = []
+  }
+
+  addOrder(Salad){
+  this.cart.push(Salad);
+  }
+
+  removeOrder(Salad){
+  const index = this.cart.indexOf(Salad)
+  this.cart.splice(index, 1)
+  }
+
+  getTotalPrice(){
+    return this.cart.reduce((p,c) => p + c.getPrice(), 0)
+  }
+
+}
+console.log("-------TEST-------");
+let h = new HandleOrder();
+// console.log(h.cart);
+h.addOrder(myGourmetSalad)
+h.addOrder(myGourmetSalad)
+h.addOrder(myCaesarSalad)
+// console.log(h.cart);
+// h.removeOrder(myGourmetSalad)
+// console.log(h.cart);
+console.log("Total price: \n", h.getTotalPrice());
