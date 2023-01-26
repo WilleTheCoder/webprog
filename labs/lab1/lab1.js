@@ -142,7 +142,11 @@ console.log('En ceasarsallad har ' + myCaesarSalad.count('extra') + ' tillbehör
 /**
 * Reflection question 3
 * How are classes and inherited properties represented in JavaScript?
+*
+* What is the difference between an object’s prototype chain and having a prototype property? 
 * 
+* Which objects have a prototype property? How do you get the next object in the prototype chain?
+*
 */
 console.log('\n--- reflection question 3 ---------------------------------------')
 console.log('typeof Salad: ' + typeof Salad);
