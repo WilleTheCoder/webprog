@@ -142,10 +142,13 @@ console.log('En ceasarsallad har ' + myCaesarSalad.count('extra') + ' tillbehör
 /**
 * Reflection question 3
 * How are classes and inherited properties represented in JavaScript?
+* Classes are templates for creating objects
 *
 * What is the difference between an object’s prototype chain and having a prototype property? 
-* 
+* [ obj3 -> [obj2] -> obj1 -> Object ]
+*
 * Which objects have a prototype property? How do you get the next object in the prototype chain?
+* Object.getPrototypeOf(obj2) => obj
 *
 */
 console.log('\n--- reflection question 3 ---------------------------------------')
@@ -217,16 +220,16 @@ console.log('Min gourmetsallad har uuid: ' + myGourmetSalad.uuid);
 class HandleOrder{
 
   constructor(){
-  this.cart = []
+    this.cart = []
   }
 
   addOrder(Salad){
-  this.cart.push(Salad);
+    this.cart.push(Salad);
   }
 
   removeOrder(Salad){
-  const index = this.cart.indexOf(Salad)
-  this.cart.splice(index, 1)
+    const index = this.cart.indexOf(Salad)
+    this.cart.splice(index, 1)
   }
 
   getTotalPrice(){
