@@ -67,7 +67,9 @@ class Salad {
     if (arg === undefined){
       this.ingredients = {}
     } else if (typeof arg === "string"){ //check if string
-      this.ingredients = JSON.parse(arg).ingredients;
+      let parsed = JSON.parse(arg);
+      this.ingredients = parsed.ingredients;
+      this.uuid = parsed.uuid;
     } else if(arg instanceof Salad){ //check if Salad object
       this.ingredients = {...arg.ingredients}
     }
@@ -83,16 +85,26 @@ class Salad {
     return this
   }
 
-  getPrice(){
-    return Object.values(this.ingredients)
-          .reduce((p,c) => p + c.price, 0);
-  }
-
-  count(property){
-    return (Object.values(this.ingredients)
-      .filter(x => x[property] !== undefined)).length
-  }
+  getPrice = function(){
+      return Object.values(this.ingredients)
+            .reduce((p,c) => p + c.price, 0);
+    }
+    
+    count = function(){
+      return (Object.values(this.ingredients)
+        .filter(x => x[property] !== undefined)).length
+    }
 }
+
+// Salad.prototype.getPrice = function(){
+//   return Object.values(this.ingredients)
+//         .reduce((p,c) => p + c.price, 0);
+// }
+
+// Salad.prototype.count = function(property){
+//   return (Object.values(this.ingredients)
+//     .filter(x => x[property] !== undefined)).length
+// }
 
 class GourmetSalad extends Salad {
 
@@ -159,6 +171,7 @@ console.log('typeof myCaesarSalad: ' + typeof myCaesarSalad);
 console.log('typeof myCaesarSalad.prototype: ' + typeof myCaesarSalad.prototype);
 console.log('check 1: ' + (Salad.prototype === Object.getPrototypeOf(myCaesarSalad)));
 console.log('check 2: ' + (Object.prototype === Object.getPrototypeOf(Salad.prototype)));
+console.log('check 2: ' + (Salad.prototype === Object.getPrototypeOf(Salad)));
 
 
 console.log("\n--- Assignment 4 ---------------------------------------");
