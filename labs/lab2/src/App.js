@@ -2,15 +2,15 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import inventory from './inventory.ES6';
 import ComposeSalad from './ComposeSalad';
-import ShoppingCart from './ShoppingCart';
+import ViewOrder from './ViewOrder';
 import { useState } from 'react';
 
 function App() {
 
-  const [salads, setSalads] = useState([]);
+  const [shoppingCart, setSalads] = useState([]);
 
   const saladSubmit = (salad) => {
-    setSalads({ ...salads, salad });
+    setSalads([...shoppingCart, salad]);
   }
 
   return (
@@ -19,7 +19,7 @@ function App() {
         <span className="fs-4">Min egen salladsbar</span>
       </header>
 
-      <ShoppingCart cart={salads} />
+      <ViewOrder shoppingCart={shoppingCart} />
       <ComposeSalad inventory={inventory} saladSubmit={saladSubmit} />
 
       <footer className="pt-3 mt-4 text-muted border-top">

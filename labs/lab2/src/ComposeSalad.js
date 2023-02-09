@@ -22,15 +22,15 @@ function ComposeSalad(props) {
         });
     };
 
-    const handleSubmit = event => {   
-        event.preventDefault();
+    const handleSubmit = event => {     
         let extras = Object.keys(extra).filter((n) => extra[n]);
         let ingredients = [foundation, protein, ...extras, dressing]
         let salad = new Salad();
-
         ingredients.forEach((i) => salad.add(i, inventory[i]));
+        
+        props.saladSubmit(salad);  
         resetForm();
-        props.saladSubmit(salad);       
+        event.preventDefault();
     }
 
     const resetForm = function() {
