@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import inventory from './inventory.ES6.js';
 import Salad from './Salad.js';
+import OptionsComponent from './OptionComponent.js';
 
 function ComposeSalad(props) {
     const [foundation, setFoundation] = useState('Pasta');
@@ -12,6 +13,9 @@ function ComposeSalad(props) {
     let proteins = Object.keys(props.inventory).filter(name => props.inventory[name].protein);
     let dressings = Object.keys(props.inventory).filter(name => props.inventory[name].dressing);
     let foundations = Object.keys(props.inventory).filter(name => props.inventory[name].foundation);
+    // let foundations = useMemo(() => { //ref3
+    //     return Object.keys(props.inventory).filter(name => props.inventory[name].foundation)
+    //   }, [props.inventory]);
 
     const handleChange = event => {
         const { name, checked } = event.target;
@@ -45,26 +49,24 @@ function ComposeSalad(props) {
             <form onSubmit={handleSubmit}>
                 <div className="row h-200 p-5 bg-light border rounded-3">
 
-                    <h2>Välj bas</h2>
-                    <div className="row pb-3">
-                        <select value={foundation} onChange={e => setFoundation(e.target.value)}>
-                            {foundations.map(name => <option key={name} value={name}>{name}</option>)}
-                        </select>
-                    </div>
-
-                    <h2>Välj protein</h2>
-                    <div className="row pb-3">
-                        <select value={protein} onChange={e => setProtein(e.target.value)}>
-                            {proteins.map(name => <option key={name} value={name}>{name}</option>)}
-                        </select>
-                    </div>
-
-                    <h2>Välj dressing</h2>
-                    <div className="row pb-3">
-                        <select value={dressing} onChange={e => setDressing(e.target.value)}>
-                            {dressings.map(name => <option key={name} value={name}>{name}</option>)}
-                        </select>
-                    </div>
+                <OptionsComponent
+                options={foundations}
+                value={foundation}
+                onChange={setFoundation}
+                title="Välj foundation"
+                />
+                <OptionsComponent
+                options={proteins}
+                value={protein}
+                onChange={setProtein}
+                title="Välj protein"
+                />
+                <OptionsComponent
+                options={dressings}
+                value={dressing}
+                onChange={setDressing}
+                title="Välj dressing"
+                />
 
                     <h2>Välj tillbehör</h2>
                     <div className="row pb-3">
