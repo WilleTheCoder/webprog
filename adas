@@ -1,0 +1,281 @@
+[33mcommit d6f47e3595fe6cb9aab8d70e76f90054156eb6a1[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: willethecoder <wille-hif@hotmail.com>
+Date:   Fri Feb 10 14:30:36 2023 +0100
+
+    created OptionComponent, updated questions.md
+
+[33mcommit a6d8101da87dfb7941a76dea34018858d2a4f053[m
+Author: Daniel Dahlén <daniel@znitz.se>
+Date:   Thu Feb 9 23:03:41 2023 +0100
+
+    it dobidone now
+
+[33mcommit 2c86ccf9e9477b4ea265b8a3e9f51dc86629b698[m
+Author: Daniel Dahlén <daniel@znitz.se>
+Date:   Thu Feb 9 20:55:57 2023 +0100
+
+    fel på inläggning av sallader
+
+[33mcommit ba758e355447b08c503c0b1fec86e2eb7f2d0883[m
+Author: Daniel Dahlén <daniel@znitz.se>
+Date:   Thu Feb 9 05:23:53 2023 +0100
+
+    working options
+
+[33mcommit 2aa1f61e833120bebb0c4587b5e57826b0f2542e[m
+Author: Daniel Dahlén <daniel@znitz.se>
+Date:   Thu Feb 9 03:50:15 2023 +0100
+
+    LÅÅT MIG LÄSA
+
+[33mcommit cd7bfb127ec6eba1b21447a828ab4ccbf7570f80[m
+Merge: 684c565 583caa6
+Author: willethecoder <73803431+WilleTheCoder@users.noreply.github.com>
+Date:   Tue Jan 31 00:01:53 2023 +0100
+
+    Merge branch 'lunduniversity:master' into master
+
+[33mcommit 583caa6258923be1962159cae3fee69bae4d7d95[m
+Author: Per <per.andersson@cs.lth.se>
+Date:   Sun Jan 29 17:19:19 2023 +0100
+
+    minor corrections
+
+[33mcommit 684c565d308f6ab2e05ae895105cd051437c48d1[m
+Author: willethecoder <william.mauritzon.3328@student.lu.se>
+Date:   Fri Jan 27 14:22:01 2023 +0100
+
+    added RQ3
+
+[33mcommit 036a5eb3add160bce9db3650ed4bbf081fa9e443[m
+Author: willethecoder <wille-hif@hotmail.com>
+Date:   Thu Jan 26 22:07:22 2023 +0100
+
+    minor change
+
+[33mcommit d57294505f8b328086eb05b74e618495cfd804b0[m
+Author: willethecoder <wille-hif@hotmail.com>
+Date:   Thu Jan 26 21:34:35 2023 +0100
+
+    updated lab1 - kinda done
+
+[33mcommit eb5bde25523737826430914b9e27d9223ef6536d[m
+Author: willethecoder <wille-hif@hotmail.com>
+Date:   Wed Jan 25 20:17:01 2023 +0100
+
+    updated lab1
+
+[33mcommit aebbc6047f6d024492c12e61f75abd79ca2867b7[m
+Merge: 267fe31 57ab218
+Author: willethecoder <73803431+WilleTheCoder@users.noreply.github.com>
+Date:   Wed Jan 25 00:21:53 2023 +0100
+
+    Merge branch 'lunduniversity:master' into master
+
+[33mcommit 267fe31765c69916ef76ad42673a291c285e67ab[m
+Author: willethecoder <wille-hif@hotmail.com>
+Date:   Wed Jan 25 00:20:35 2023 +0100
+
+    halfway there lab1
+
+[33mcommit 57ab2180d80e6f1fc88d7cd76963aad2647c0164[m
+Author: Per <per.andersson@cs.lth.se>
+Date:   Tue Jan 24 18:55:02 2023 +0100
+
+    updated slides 3 and 4
+
+[33mcommit 99392528c9ea8ac701ad9f454415ad45d3e00a08[m
+Merge: 49e6879 b1e84d5
+Author: Per Andersson <per.andersson@cs.lth.se>
+Date:   Tue Jan 24 17:48:11 2023 +0100
+
+    Merge pull request #12 from mnordahl/master
+    
+    Minor fixes in lab1
+
+[33mcommit b1e84d5206fcd697eaae23a985980b3f7287a47b[m
+Author: Mattias Nordahl <mattias.nordahl@cs.lth.se>
+Date:   Tue Jan 24 17:28:07 2023 +0100
+
+    Added updated PDF. However, missing fonts resulted in italics not working. You should compile your own!
+
+[33mcommit 8652537b1abdc2055e6b791e1a0ae723d7b5a19f[m
+Author: Mattias Nordahl <mattias.nordahl@cs.lth.se>
+Date:   Tue Jan 24 17:26:36 2023 +0100
+
+    Minor grammatical fixes and clarifications
+
+[33mcommit fe5f52b41cbcf42ce55dfdf4f3240f2b629e9ffe[m
+Author: Mattias Nordahl <mattias.nordahl@cs.lth.se>
+Date:   Tue Jan 24 17:26:03 2023 +0100
+
+    Added (more) LaTeX and VS Code rules in gitignore
+
+[33mcommit 49e6879efedce6f62814e118a39b4905145de9af[m
+Author: Per <per.andersson@cs.lth.se>
+Date:   Fri Jan 20 17:19:03 2023 +0100
+
+    updated contributions list, minor fixes to lab 1
+
+[33mcommit 7278f52cdc4d89bd35385197e66f6af338011a4e[m
+Merge: 46a9817 9644969
+Author: Per Andersson <per.andersson@cs.lth.se>
+Date:   Fri Jan 20 17:05:37 2023 +0100
+
+    Merge pull request #11 from Kevlanche/master
+    
+    Fix typo and sample code in lab 1
+
+[33mcommit 964496937c8b27125d1e2e09cbdbd57efa7de044[m
+Author: Anton Risberg Alaküla <anton.risberg_alakula@cs.lth.se>
+Date:   Fri Jan 20 15:18:47 2023 +0100
+
+    Fix typo and sample code in lab 1
+    
+    Fix minor typos in lab1.tex.
+    
+    Changed a console.log in lab1.js to use ',' instead of '+', which makes the output be:
+      Sallad: { price: 10, foundation: true, vegan: true }
+    Instead of:
+      Sallad: [object Object]
+
+[33mcommit 46a98179346e9fcca4e8d5a8afc75e287f1a9386[m
+Author: Per <per.andersson@cs.lth.se>
+Date:   Wed Jan 18 21:48:57 2023 +0100
+
+    updated slideds for lecture 1-2
+
+[33mcommit e98c1ac76d9866d8e40a026f95c03aa82a1b2b33[m
+Author: Per <per.andersson@cs.lth.se>
+Date:   Wed Jan 18 16:04:10 2023 +0100
+
+    updated lab 1
+
+[33mcommit 2585de3658599c01b93fa15ced560987c8edd9e1[m
+Author: Per <per.andersson@cs.lth.se>
+Date:   Tue Jan 17 16:57:06 2023 +0100
+
+    updated slides for intro and JS
+
+[33mcommit 577ed8986083bd04c5a11d242be1fb763e698540[m
+Author: Per <per.andersson@cs.lth.se>
+Date:   Wed Feb 16 16:16:25 2022 +0100
+
+    minor update to lecture 10
+
+[33mcommit 113a64494006c6b981a418519a9e4775120044ae[m
+Author: Per <per.andersson@cs.lth.se>
+Date:   Wed Feb 16 16:07:23 2022 +0100
+
+    updated project description
+
+[33mcommit 1365caff6a85ee65ae204169943c11e1d868ec7c[m
+Author: Per <per.andersson@cs.lth.se>
+Date:   Wed Feb 9 09:25:06 2022 +0100
+
+    moved reflection question 3, lab 3
+
+[33mcommit 71abad19dd56dacb4457cb329d6b4fe3cb0f72ba[m
+Author: Per <per.andersson@cs.lth.se>
+Date:   Tue Feb 8 11:00:22 2022 +0100
+
+    minor update to lab 4
+
+[33mcommit e0ae26739884d4b08ce130f793825e47fb72728c[m
+Author: Per <per.andersson@cs.lth.se>
+Date:   Mon Feb 7 11:35:04 2022 +0100
+
+    updated lecture 7
+
+[33mcommit c8d6e1e476d2176ba2245e85f4b824e08162e0c6[m
+Author: Per <per.andersson@cs.lth.se>
+Date:   Sun Feb 6 18:50:45 2022 +0100
+
+    minor update to lab 4
+
+[33mcommit 0dff87716bea1e0436b8af1e0ce044698234ce93[m
+Author: Per <per.andersson@cs.lth.se>
+Date:   Sun Feb 6 18:25:39 2022 +0100
+
+    minor update to lab 4
+
+[33mcommit 4071a113af10bb721a35f8a5c5992c1f2c1fab98[m
+Author: Per <per.andersson@cs.lth.se>
+Date:   Sun Feb 6 18:22:15 2022 +0100
+
+    updated lab 4
+
+[33mcommit ef73b93091140e4a543853ef627460db192919a3[m
+Author: Per <per.andersson@cs.lth.se>
+Date:   Sun Feb 6 15:20:41 2022 +0100
+
+    updated lab 4
+
+[33mcommit a425eb92788c8079e00645c187322c29fa8b3ff2[m
+Author: Per <per.andersson@cs.lth.se>
+Date:   Sat Feb 5 16:25:10 2022 +0100
+
+    minor update to lab 3
+
+[33mcommit 11aefc78870f17d92cf9d91d52e33caa244e7f60[m
+Author: Per <per.andersson@cs.lth.se>
+Date:   Thu Feb 3 21:37:37 2022 +0100
+
+    minor update to lab 2
+
+[33mcommit 26c6a955fa2400583222b054777d8ec1b33b2d3f[m
+Author: Per <per.andersson@cs.lth.se>
+Date:   Thu Feb 3 21:35:14 2022 +0100
+
+    minor update to lecture 5
+
+[33mcommit 0331eff54b307f05f9bcd8bdf1c230fd3672f942[m
+Author: Per <per.andersson@cs.lth.se>
+Date:   Tue Feb 1 21:18:59 2022 +0100
+
+    updated lab 3
+
+[33mcommit 148f4e6f13cb5a7e3bc9796ff87cfeca14a2b908[m
+Author: Per <per.andersson@cs.lth.se>
+Date:   Tue Feb 1 17:38:38 2022 +0100
+
+    updated lab 3
+
+[33mcommit e29d51eb1f4b8e6be3243da2ee78e8f038da3e8f[m
+Author: Per <per.andersson@cs.lth.se>
+Date:   Mon Jan 31 19:50:57 2022 +0100
+
+    minor updated to lecture 5
+
+[33mcommit e7d08e57fd709ef43c9697df60bf43de9908039f[m
+Author: Per <per.andersson@cs.lth.se>
+Date:   Mon Jan 31 18:11:04 2022 +0100
+
+    updated lecture 5 slides for bootstrap 5
+
+[33mcommit 1ef5c27a5686971ccba61a430b68cf2276b82e65[m
+Author: Per <per.andersson@cs.lth.se>
+Date:   Sun Jan 30 18:01:15 2022 +0100
+
+    updated lecture 5 slides to React router v6
+
+[33mcommit 6488841ea0cc3d9cd907a4de741224436e627909[m
+Author: Per <per.andersson@cs.lth.se>
+Date:   Sun Jan 30 12:08:08 2022 +0100
+
+    updated lecture 4
+
+[33mcommit 7195793bf21b30dfd469a99a320b15e7c8518332[m
+Author: Per <per.andersson@cs.lth.se>
+Date:   Wed Jan 26 13:20:03 2022 +0100
+
+    minor update of lecture 3
+
+[33mcommit e56665634ba95a9990c865343795ba9841482b58[m
+Author: Per <per.andersson@cs.lth.se>
+Date:   Mon Jan 24 23:18:54 2022 +0100
+
+    added jQuery to lecture 3
+
+[33mcommit b78832cda4def132963fa5a50c1e23fa1d530f31[m
+Author: 
