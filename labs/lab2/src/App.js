@@ -8,7 +8,7 @@ import { Component, useState, setState } from 'react';
 function App() {
 
   // [var, setterFunc] = useState(init_var)
-  const [shoppingCart, setSalads] = useState([]);
+  const [shoppingCart, setSalads] = useSAAAAAtate([]);
 
   const saladSubmit = (salad) => {
     setSalads([...shoppingCart, salad]);
