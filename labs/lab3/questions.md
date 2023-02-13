@@ -6,6 +6,10 @@
     <link rel="icon" type="image/x-icon" href="%PUBLIC_URL%/appicon.ico">
 
 
+**Reflection Question 2: If you use nav-pills instead of nav-tabs the selected page is no longer highlighted in the menu, why? Hint: <NavLink> and the active css class.**
+
+    There was no difference in using nav-pills instead of nav-tabs, both links get highlighted when clicked?
+    If you wanna set the active css class explicitly you have to create a NavLink component from React Router and change the active className prop.
 
 **Notes**
 
