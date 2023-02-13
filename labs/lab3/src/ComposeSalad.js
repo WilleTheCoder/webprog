@@ -3,10 +3,13 @@ import inventory from './inventory.ES6.js';
 import Salad from './Salad.js';
 import OptionsComponent from './OptionComponent.js';
 import SelectMenuComponent from './SelectMenuComponent.js';
+import { useNavigate } from "react-router-dom";
+
 
 function ComposeSalad(props) {
     const [foundation, setFoundation] = useState('Pasta');
     const [protein, setProtein] = useState('Kycklingfilé');
+    const navigate = useNavigate();
     const [dressing, setDressing] = useState('Ceasardressing');
     const [extra, setExtra] = useState({});
 
@@ -37,6 +40,8 @@ function ComposeSalad(props) {
         props.saladSubmit(salad);  
         resetForm();
         event.preventDefault();
+
+        navigate("/checkout")
     }
 
     const resetForm = function() {

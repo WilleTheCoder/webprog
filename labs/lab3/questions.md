@@ -13,5 +13,6 @@
 
 **Notes**
 
-The BrowserRouter component is added to the top of the component tree, and the App component is rendered as its child. This will ensure that all the other React Router components such as Link and Route are correctly contained within the router.
+- The BrowserRouter component is added to the top of the component tree, and the App component is rendered as its child. This will ensure that all the other React Router components such as Link and Route are correctly contained within the router.
 
+- The useNavigate hook can only be used within a React function component or a custom React Hook.
