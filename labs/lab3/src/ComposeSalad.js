@@ -80,6 +80,7 @@ function ComposeSalad(props) {
                 extras = {extras}
                 extra = {extra}
                 event = {handleChange}
+                inventory = {inventory}
                 ></SelectMenuComponent>
                 
                 </div>

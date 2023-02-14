@@ -3,8 +3,10 @@ import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import inventory from "./inventory.ES6";
 import ComposeSalad from "./ComposeSalad";
 import ViewOrder from "./ViewOrder";
+import ViewIngredient from ".//ViewIngredient";
 import { Component, useState, setState } from "react";
 import { Link, Routes, Route } from "react-router-dom";
+
 
 function App() {
   // [var, setterFunc] = useState(init_var)
@@ -30,11 +32,12 @@ function App() {
             path="/checkout"
             element={<ViewOrder shoppingCart={shoppingCart} />}
           ></Route>
-          <Route
-            path="/"
-            element={<h1>Välkommen!</h1>}
-          ></Route>
+          <Route path="/" element={<h1>Välkommen!</h1>}></Route>
           <Route path="*" element={<h1>ERORROOR</h1>}></Route>
+        <Route
+          path="/View-ingredient/:name"
+          element={<ViewIngredient inventory = {inventory} />}
+        ></Route>
         </Routes>
         {<Footer />}
       </div>
