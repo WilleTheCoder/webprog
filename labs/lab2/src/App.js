@@ -8,11 +8,12 @@ import { Component, useState, setState } from 'react';
 function App() {
 
   // [var, setterFunc] = useState(init_var)
-  const [shoppingCart, setSalads] = useSAAAAAtate([]);
+  const [shoppingCart, setSalads] = useState([]);
 
   const saladSubmit = (salad) => {
-    setSalads([...shoppingCart, salad]);
+    setSalads(oldState => [...oldState, salad]);
   }
+
 
   return (
     <div className="container py-4">
@@ -21,10 +22,7 @@ function App() {
       </header>
 
       <ViewOrder shoppingCart={shoppingCart} />
-      <ComposeSalad 
-        inventory={inventory} 
-        saladSubmit={saladSubmit} 
-      />
+      <ComposeSalad inventory={inventory} saladSubmit={saladSubmit} />
 
       <footer className="pt-3 mt-4 text-muted border-top">
         EDAF90 - webprogrammering
@@ -33,6 +31,7 @@ function App() {
   );
 }
 export default App;
+
 
 // class App extends Component {
 //   constructor(){
@@ -47,7 +46,7 @@ export default App;
 //      const saladSubmit = (salad) => {
 //        this.setState({shoppingCart: salad})
 //       //  setSalads([...shoppingCart, salad]);
-//      } 
+//      }
 
 //      return (
 //        <div className="container py-4">

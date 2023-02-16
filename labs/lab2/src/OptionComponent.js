@@ -4,7 +4,7 @@ const OptionsComponent = ({ options, value, onChange, title }) => (
     <div>
       <h2>{title}</h2>
       <div className="row pb-3">
-        <select className = "form-select" value={value} onChange={e => onChange(e.target.value)}>
+        <select className="select-form" value={value} onChange={e => onChange(e.target.value)}>
           {options.map(name => (
             <option key={name} value={name}>
               {name}
