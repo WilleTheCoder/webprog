@@ -13,8 +13,8 @@ function App() {
   const [shoppingCart, setSalads] = useState([]);
 
   const saladSubmit = (salad) => {
-    setSalads([...shoppingCart, salad]);
-  };
+    setSalads(oldState => [...oldState, salad]);
+  }
 
   const renderPage = () => {
     return (

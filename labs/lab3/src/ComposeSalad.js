@@ -37,7 +37,6 @@ function ComposeSalad(props) {
         ingredients.forEach((i) => salad.add(i, inventory[i]));
         
         props.saladSubmit(salad);  
-        props.saladSubmit(salad);  
         resetForm();
         event.preventDefault();
 
