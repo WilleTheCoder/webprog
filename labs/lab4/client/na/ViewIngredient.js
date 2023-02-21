@@ -13,7 +13,7 @@ function ViewIngredient({ inventory }) {
     <div className="container py-4">
       <ul>
         {attr.map((v) => (
-          <li key={v+"id"}> {v} </li>
+          <li> {v} </li>
         ))}
       </ul>
     </div>

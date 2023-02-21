@@ -1,22 +1,20 @@
 import { useMemo, useState } from 'react';
-import inventory from './inventory.ES6.js';
 import Salad from './Salad.js';
 import OptionsComponent from './OptionComponent.js';
 import SelectMenuComponent from './SelectMenuComponent.js';
 import { useNavigate } from "react-router-dom";
 
+function ComposeSalad({inventory, saladSubmit}) {
+    let extras = Object.keys(inventory).filter(name => inventory[name].extra);
+    let proteins = Object.keys(inventory).filter(name => inventory[name].protein);
+    let dressings = Object.keys(inventory).filter(name => inventory[name].dressing);
+    let foundations = Object.keys(inventory).filter(name => inventory[name].foundation);
 
-function ComposeSalad(props) {
     const [foundation, setFoundation] = useState('Pasta');
     const [protein, setProtein] = useState('Kycklingfilé');
     const navigate = useNavigate();
     const [dressing, setDressing] = useState('Ceasardressing');
     const [extra, setExtra] = useState({});
-
-    let extras = Object.keys(props.inventory).filter(name => props.inventory[name].extra);
-    let proteins = Object.keys(props.inventory).filter(name => props.inventory[name].protein);
-    let dressings = Object.keys(props.inventory).filter(name => props.inventory[name].dressing);
-    let foundations = Object.keys(props.inventory).filter(name => props.inventory[name].foundation);
     // let foundations = useMemo(() => { //ref3
     //     return Object.keys(props.inventory).filter(name => props.inventory[name].foundation)
     //   }, [props.inventory]);
@@ -36,7 +34,7 @@ function ComposeSalad(props) {
         let salad = new Salad();
         ingredients.forEach((i) => salad.add(i, inventory[i]));
         
-        props.saladSubmit(salad);  
+        saladSubmit(salad);  
         resetForm();
         event.preventDefault();
 

@@ -1,72 +1,20 @@
 import "./App.css";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-//import inventory from "./inventory.ES6";
+import inventory from "./inventory.ES6";
 import ComposeSalad from "./ComposeSalad";
 import ViewOrder from "./ViewOrder";
 import ViewIngredient from ".//ViewIngredient";
-import { Component, useState, setState, useEffect } from "react";
+import { Component, useState, setState } from "react";
 import { Link, Routes, Route } from "react-router-dom";
 
-const URL = "http://localhost:8080/"
 
 function App() {
   // [var, setterFunc] = useState(init_var)
   const [shoppingCart, setSalads] = useState([]);
-  const [inventory, setInventory] = useState({})
+
   const saladSubmit = (salad) => {
     setSalads(oldState => [...oldState, salad]);
   }
-
-
-  useEffect(() => {
-
-    async function fetchData(url) {
-      const response = await fetch(url, {
-        method: "GET"
-      });
-      if (!response.ok) {
-        throw new Error(`This is an HTTP error: The status is ${response.status}`);
-      }
-      const data = await response.json();
-      return data;
-    }
-
-    async function buildInventory() {
-      const inv = {}
-      const categories = ["foundations", "proteins", "extras", "dressings"]
-      const categoryRes = await Promise.all(categories.map(category => fetchData(URL + category)))
-
-      for (let i = 0; i < categories.length; i++) {
-        const ingredients = categoryRes[i]
-        const ingredientRes = await Promise.all(ingredients.map((ingredient) => fetchData(URL + categories[i] + "/" + ingredient)))
-
-        for (let j = 0; j < ingredients.length; j++) {
-          inv[ingredients[j]] = ingredientRes[j]
-        }
-      }
-      setInventory(inv)
-      console.log("inventory: ", inv);
-    }
-    
-    // async function buildInventory() {
-    //   const inv = {}
-    //   const categories = ["foundations", "proteins", "extras", "dressings"]
-
-    //   categories.map(async (category) => {
-    //     const ingredients = await fetchData(URL + category)
-
-    //     ingredients.map(async (ingredient) => {
-    //       const data = await fetchData(URL + category + "/" + ingredient)
-    //       inv[ingredient] = data
-    //     }
-    //     )
-    //   })
-    //   console.log("inventory: ", inv);
-    // }
-
-    buildInventory()
-  }, [])
-
 
   const renderPage = () => {
     return (
@@ -86,10 +34,10 @@ function App() {
           ></Route>
           <Route path="/" element={<h1>Välkommen!</h1>}></Route>
           <Route path="*" element={<h1>ERORROOR</h1>}></Route>
-          <Route
-            path="/View-ingredient/:name"
-            element={<ViewIngredient inventory={inventory} />}
-          ></Route>
+        <Route
+          path="/View-ingredient/:name"
+          element={<ViewIngredient inventory = {inventory} />}
+        ></Route>
         </Routes>
         {<Footer />}
       </div>
