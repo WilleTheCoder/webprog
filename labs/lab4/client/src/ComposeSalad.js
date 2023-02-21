@@ -33,9 +33,15 @@ function ComposeSalad(props) {
         let extras = Object.keys(extra).filter((n) => extra[n]);
         let ingredients = [foundation, protein, ...extras, dressing]
         let salad = new Salad();
+<<<<<<< HEAD
         ingredients.forEach((i) => salad.add(i, props.inventory[i]));
 
         props.saladSubmit(salad);
+=======
+        ingredients.forEach((i) => salad.add(i, inventory[i]));
+        
+        props.saladSubmit(salad);  
+>>>>>>> f1df1720e6c49d1eedddee0c47fcbd3583789c0c
         resetForm();
         event.preventDefault();
 

@@ -1,4 +1,3 @@
-import inventory from './inventory.ES6.js';
 const { v4: uuidv4 } = require("uuid");
 
 class Salad {

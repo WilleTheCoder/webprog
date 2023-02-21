@@ -1,11 +1,13 @@
 import "./App.css";
-import "bootstrap/dist/css/bootstrap.min.css";
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+//import inventory from "./inventory.ES6";
 import ComposeSalad from "./ComposeSalad";
 import ViewOrder from "./ViewOrder";
 import ViewIngredient from ".//ViewIngredient";
 import { Component, useState, setState, useEffect } from "react";
 import { Link, Routes, Route } from "react-router-dom";
 
+const URL = "http://localhost:8080/"
 
 function App() {
   // [var, setterFunc] = useState(init_var)
