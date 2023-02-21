@@ -2,20 +2,39 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import ComposeSalad from "./ComposeSalad";
 import ViewOrder from "./ViewOrder";
-import ViewIngredient from "./ViewIngredient";
+import ViewIngredient from ".//ViewIngredient";
 import { Component, useState, setState, useEffect } from "react";
 import { Link, Routes, Route } from "react-router-dom";
 
 
 function App() {
   // [var, setterFunc] = useState(init_var)
-
-  //this.state = {shoppingBasket: [], inventory: {}};
   const [shoppingCart, setSalads] = useState([]);
-  const [inventory, setInventory] = useState({});
+  const [inventory, setInventory] = useState({})
 
   const saladSubmit = (salad) => {
     setSalads(oldState => [...oldState, salad]);
+  }
+
+  const orderSubmit = (shoppingCart) => {
+    postOrder("http://localhost:8080/orders/", shoppingCart);
+    console.log(shoppingCart)
+    setSalads([]);
+    console.log(shoppingCart)
+    //send post
+  }
+
+  async function postOrder(url, shoppingCart){
+    let order = shoppingCart.map((salad) =>
+      Object.keys(salad.ingredients)
+    );
+    console.log(JSON.stringify(order))
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(order),
+    });
+    console.log(response);
   }
 
   function safeFetchJson(url) {
@@ -28,41 +47,48 @@ function App() {
       });
   }
 
-  const fetchIngredient = function (url, ingredient) {
-    return fetch(url + ingredient).then((response) => {
-      if (!response.ok) {
-        throw new Error(`${url} returned status ${response.status}`);
+  async function fetchIngredient(props, name) {
+    return await safeFetchJson(`http://localhost:8080/${props}/${name}`).then(
+      (ingredient) => {
+        return { [name]: ingredient };
       }
-      return response.json();
-    });
-  };
+    );
+  }
 
-  const fetchInventory = function (target) {
-    let url = `http://localhost:8080/${target}/`;
-    safeFetchJson(url)
-      .then((ings) => {
-        let props = ings.map((ing) => fetchIngredient(url, ing));
-        return Promise.all(props).then((p) =>
-          p.reduce(
-            (prev, current, index) => ({ ...prev, [ings[index]]: current }),
-            {}
-          )
-        );
-      });
+  async function fetchInventory(property) {
+    const ingredients = await safeFetchJson(`http://localhost:8080/${property}`);
+    return (
+      await Promise.all(
+        ingredients.map((name) => fetchIngredient(property, name))
+      )
+    ).reduce((acc, curr) => {
+      const [ingredientName] = Object.keys(curr);
+      return { ...acc, [ingredientName]: curr[ingredientName] };
+    }, {});
+  }
+
+  async function fetchAll() {
+    const foundations = fetchInventory("foundations");
+    const proteins = fetchInventory("proteins");
+    const extras = fetchInventory("extras");
+    const dressings = fetchInventory("dressings");
+
+    const combinedInventory = Object.assign(...await Promise.all([
+      foundations,
+      proteins,
+      extras,
+      dressings])
+    );
+    return combinedInventory;
   }
 
   useEffect(() => {
-    Promise.all([
-      fetchInventory("foundations"),
-      fetchInventory("proteins"),
-      fetchInventory("dressings"),
-      fetchInventory("extras"),
-    ])
-      .then((groups) =>
-      groups.reduce((prev, curr) => ({ ...prev, ...curr }))
-      )
-      .then((ings) => setInventory(ings));
-  });
+    async function fetchData() {
+      const data = await fetchAll();
+      setInventory(data);
+    }
+    fetchData();
+  }, []);
 
   const renderPage = () => {
     return (
@@ -78,7 +104,7 @@ function App() {
           ></Route>
           <Route
             path="/checkout"
-            element={<ViewOrder shoppingCart={shoppingCart} />}
+            element={<ViewOrder shoppingCart={shoppingCart} orderSubmit={orderSubmit} />}
           ></Route>
           <Route path="/" element={<h1>Välkommen!</h1>}></Route>
           <Route path="*" element={<h1>ERORROOR</h1>}></Route>
