@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-import SelectMenuComponent from './SelectMenuComponent.js';
-=======
 import { useState } from "react";
->>>>>>> f1df1720e6c49d1eedddee0c47fcbd3583789c0c
 
 function ViewOrder(props) {
     const { shoppingCart } = props;
@@ -55,14 +51,6 @@ function ViewOrder(props) {
                     {shoppingCart.map(salad => (
                         <div key={salad.uuid}> {Object.keys(salad.ingredients).join(', ')} , pris: {salad.getPrice()} kr</div>
                     ))}
-<<<<<<< HEAD
-                    <div className="row pt-3">
-                    <button onClick={handleSubmit} className="btn btn-primary">Beställ</button>
-                    </div>
-                </div>
-            </div>
-        </div >
-=======
 
                     <div className="d-inline-block text-center">
                         <button type="button" onClick={sendOrder} className="mt-3 btn btn-lg btn-primary">Order</button>
@@ -72,7 +60,6 @@ function ViewOrder(props) {
 
             {showOrder && <OrderComponent></OrderComponent>}
         </div>
->>>>>>> f1df1720e6c49d1eedddee0c47fcbd3583789c0c
     );
 
     function OrderComponent() {
