@@ -36,7 +36,6 @@ function ViewOrder(props) {
 
     }
 
-
     const handleSubmit = event => {
         props.orderSubmit(shoppingCart);
         console.log(shoppingCart);
@@ -76,4 +75,3 @@ function ViewOrder(props) {
     }
 }
 export default ViewOrder;
-

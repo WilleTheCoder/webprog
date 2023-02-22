@@ -1,6 +1,5 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-//import inventory from "./inventory.ES6";
 import ComposeSalad from "./ComposeSalad";
 import ViewOrder from "./ViewOrder";
 import ViewIngredient from ".//ViewIngredient";
@@ -10,7 +9,6 @@ import { Link, Routes, Route } from "react-router-dom";
 const URL = "http://localhost:8080/"
 
 function App() {
-  // [var, setterFunc] = useState(init_var)
   const [shoppingCart, setSalads] = useState([]);
   const [inventory, setInventory] = useState({})
 
@@ -18,79 +16,37 @@ function App() {
     setSalads(oldState => [...oldState, salad]);
   }
 
-  const orderSubmit = (shoppingCart) => {
-    postOrder("http://localhost:8080/orders/", shoppingCart);
-    console.log(shoppingCart)
-    setSalads([]);
-    console.log(shoppingCart)
-    //send post
-  }
-
-  async function postOrder(url, shoppingCart){
-    let order = shoppingCart.map((salad) =>
-      Object.keys(salad.ingredients)
-    );
-    console.log(JSON.stringify(order))
-    const response = await fetch(url, {
-      method: "POST",
-      headers: {"Content-Type": "application/json"},
-      body: JSON.stringify(order),
-    });
-    console.log(response);
-  }
-
-  function safeFetchJson(url) {
-    return fetch(url)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('${ url } returned status ${ response.status }');
-        }
-        return response.json();
-      });
-  }
-
-  async function fetchIngredient(props, name) {
-    return await safeFetchJson(`http://localhost:8080/${props}/${name}`).then(
-      (ingredient) => {
-        return { [name]: ingredient };
-      }
-    );
-  }
-
-  async function fetchInventory(property) {
-    const ingredients = await safeFetchJson(`http://localhost:8080/${property}`);
-    return (
-      await Promise.all(
-        ingredients.map((name) => fetchIngredient(property, name))
-      )
-    ).reduce((acc, curr) => {
-      const [ingredientName] = Object.keys(curr);
-      return { ...acc, [ingredientName]: curr[ingredientName] };
-    }, {});
-  }
-
-  async function fetchAll() {
-    const foundations = fetchInventory("foundations");
-    const proteins = fetchInventory("proteins");
-    const extras = fetchInventory("extras");
-    const dressings = fetchInventory("dressings");
-
-    const combinedInventory = Object.assign(...await Promise.all([
-      foundations,
-      proteins,
-      extras,
-      dressings])
-    );
-    return combinedInventory;
-  }
-
   useEffect(() => {
-    async function fetchData() {
-      const data = await fetchAll();
-      setInventory(data);
+
+    async function fetchData(url) {
+      const response = await fetch(url, {
+        method: "GET"
+      });
+      if (!response.ok) {
+        throw new Error(`This is an HTTP error: The status is ${response.status}`);
+      }
+      const data = await response.json();
+      return data;
     }
-    fetchData();
-  }, []);
+
+    async function buildInventory() {
+      const inv = {}
+      const categories = ["foundations", "proteins", "extras", "dressings"]
+      const categoryRes = await Promise.all(categories.map(category => fetchData(URL + category)))
+
+      for (let i = 0; i < categories.length; i++) {
+        const ingredients = categoryRes[i]
+        const ingredientRes = await Promise.all(ingredients.map((ingredient) => fetchData(URL + categories[i] + "/" + ingredient)))
+
+        for (let j = 0; j < ingredients.length; j++) {
+          inv[ingredients[j]] = ingredientRes[j]
+        }
+      }
+      setInventory(inv)
+      console.log("inventory: ", inv);
+    }
+    buildInventory()
+  }, [])
 
   const renderPage = () => {
     return (
@@ -106,7 +62,7 @@ function App() {
           ></Route>
           <Route
             path="/checkout"
-            element={<ViewOrder shoppingCart={shoppingCart} orderSubmit={orderSubmit} />}
+            element={<ViewOrder shoppingCart={shoppingCart} />}
           ></Route>
           <Route path="/" element={<h1>Välkommen!</h1>}></Route>
           <Route path="*" element={<h1>ERORROOR</h1>}></Route>
