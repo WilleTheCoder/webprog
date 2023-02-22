@@ -6,10 +6,12 @@ function ViewOrder(props) {
 
     const [showOrder, setOrderFlag] = useState(false)
     const [order, setOrder] = useState({})
+    const [orders, setOrders] = useState([])
 
     function sendOrder() {
+        
+
         console.log("sending order!");
-        setOrderFlag(true)
         const data = []
         shoppingCart.map(salad => (
             data.push(Object.keys(salad.ingredients))
@@ -29,17 +31,22 @@ function ViewOrder(props) {
                 return res.json();
             })
             .then(res => {
+
+                if (res.price == 0){
+                    return
+                }
                 console.log(res)
+                setOrderFlag(true)
                 setOrder(res)
+                const o = JSON.parse(window.localStorage.getItem("order"))
+
+                if(!o){
+                    const add = o.push(res)
+                    window.localStorage.setItem("order", JSON.stringify(add))
+                }
             })
             .catch(error => console.error(error));
 
-    }
-
-    const handleSubmit = event => {
-        props.orderSubmit(shoppingCart);
-        console.log(shoppingCart);
-        event.preventDefault();
     }
 
     return (

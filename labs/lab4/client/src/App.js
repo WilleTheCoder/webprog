@@ -3,6 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import ComposeSalad from "./ComposeSalad";
 import ViewOrder from "./ViewOrder";
 import ViewIngredient from ".//ViewIngredient";
+import Home from ".//Home";
 import { Component, useState, setState, useEffect } from "react";
 import { Link, Routes, Route } from "react-router-dom";
 
@@ -64,7 +65,7 @@ function App() {
             path="/checkout"
             element={<ViewOrder shoppingCart={shoppingCart} />}
           ></Route>
-          <Route path="/" element={<h1>Välkommen!</h1>}></Route>
+          <Route path="/" element={<Home></Home>}></Route>
           <Route path="*" element={<h1>ERORROOR</h1>}></Route>
           <Route
             path="/View-ingredient/:name"
