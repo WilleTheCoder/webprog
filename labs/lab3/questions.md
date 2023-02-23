@@ -8,8 +8,11 @@
 
 **Reflection Question 2: If you use nav-pills instead of nav-tabs the selected page is no longer highlighted in the menu, why? Hint: <NavLink> and the active css class.**
 
-    There was no difference in using nav-pills instead of nav-tabs, both links get highlighted when clicked?
-    If you wanna set the active css class explicitly you have to create a NavLink component from React Router and change the active className prop.
+     nav-tabs works without using NavLink because Bootstrap applies the active class to the li element by default, whereas with nav-pills, we need to use NavLink to achieve the same effect.
+     i.e
+        <NavLink exact to="/" className="nav-link">
+        Hem
+        </NavLink>
 
 **Reflection Question 3: What is the difference between <Link to="/view-ingredient/:name" and <Link to="view-ingredient/:name". Try it, look in the browser url field.**
 

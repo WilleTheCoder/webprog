@@ -5,16 +5,15 @@ import ComposeSalad from "./ComposeSalad";
 import ViewOrder from "./ViewOrder";
 import ViewIngredient from ".//ViewIngredient";
 import { Component, useState, setState } from "react";
-import { Link, Routes, Route } from "react-router-dom";
-
+import { Link, Routes, Route, NavLink } from "react-router-dom";
 
 function App() {
   // [var, setterFunc] = useState(init_var)
   const [shoppingCart, setSalads] = useState([]);
 
   const saladSubmit = (salad) => {
-    setSalads(oldState => [...oldState, salad]);
-  }
+    setSalads((oldState) => [...oldState, salad]);
+  };
 
   const renderPage = () => {
     return (
@@ -34,10 +33,11 @@ function App() {
           ></Route>
           <Route path="/" element={<h1>Välkommen!</h1>}></Route>
           <Route path="*" element={<h1>ERORROOR</h1>}></Route>
-        <Route
-          path="/View-ingredient/:name"
-          element={<ViewIngredient inventory = {inventory} />}
-        ></Route>
+          <Route
+            path="/View-ingredient/:name"
+            element={<ViewIngredient inventory={inventory} />}
+          ></Route>
+          
         </Routes>
         {<Footer />}
       </div>
@@ -55,7 +55,14 @@ function App() {
   function Navbar() {
     return (
       <>
+      {/* nav-pills/tabs */}
         <ul className="nav nav-tabs">
+          <li className="nav-item">
+            <Link className="nav-link" to="/">
+              Hem
+            </Link>
+          </li>
+
           <li className="nav-item">
             <Link className="nav-link" to="/compose-salad">
               Skapa sallad
