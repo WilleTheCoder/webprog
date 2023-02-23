@@ -7,47 +7,54 @@ import Home from ".//Home";
 import { Component, useState, setState, useEffect } from "react";
 import { Link, Routes, Route } from "react-router-dom";
 
-const URL = "http://localhost:8080/"
+const URL = "http://localhost:8080/";
 
 function App() {
   const [shoppingCart, setSalads] = useState([]);
-  const [inventory, setInventory] = useState({})
+  const [inventory, setInventory] = useState({});
 
   const saladSubmit = (salad) => {
-    setSalads(oldState => [...oldState, salad]);
-  }
+    setSalads((oldState) => [...oldState, salad]);
+  };
 
   useEffect(() => {
-
     async function fetchData(url) {
       const response = await fetch(url, {
-        method: "GET"
+        method: "GET",
       });
       if (!response.ok) {
-        throw new Error(`This is an HTTP error: The status is ${response.status}`);
+        throw new Error(
+          `This is an HTTP error: The status is ${response.status}`
+        );
       }
       const data = await response.json();
       return data;
     }
 
     async function buildInventory() {
-      const inv = {}
-      const categories = ["foundations", "proteins", "extras", "dressings"]
-      const categoryRes = await Promise.all(categories.map(category => fetchData(URL + category)))
+      const inv = {};
+      const categories = ["foundations", "proteins", "extras", "dressings"];
+      const categoryRes = await Promise.all(
+        categories.map((category) => fetchData(URL + category))
+      );
 
       for (let i = 0; i < categories.length; i++) {
-        const ingredients = categoryRes[i]
-        const ingredientRes = await Promise.all(ingredients.map((ingredient) => fetchData(URL + categories[i] + "/" + ingredient)))
+        const ingredients = categoryRes[i];
+        const ingredientRes = await Promise.all(
+          ingredients.map((ingredient) =>
+            fetchData(URL + categories[i] + "/" + ingredient)
+          )
+        );
 
         for (let j = 0; j < ingredients.length; j++) {
-          inv[ingredients[j]] = ingredientRes[j]
+          inv[ingredients[j]] = ingredientRes[j];
         }
       }
-      setInventory(inv)
+      setInventory(inv);
       console.log("inventory: ", inv);
     }
-    buildInventory()
-  }, [])
+    buildInventory();
+  }, []);
 
   const renderPage = () => {
     return (
@@ -89,6 +96,11 @@ function App() {
     return (
       <>
         <ul className="nav nav-tabs">
+          <li className="nav-item">
+            <Link className="nav-link" to="/">
+              Hem
+            </Link>
+          </li>
           <li className="nav-item">
             <Link className="nav-link" to="/compose-salad">
               Skapa sallad
